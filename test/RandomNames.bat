@@ -13,15 +13,20 @@ SETLOCAL EnableExtensions EnableDelayedExpansion
 	SET /P Confirm=
 	IF /I NOT {!Confirm!}=={OK} (
 		ECHO.
-		ECHO Aborting :( .
+		ECHO Aborting.
 		GOTO :EOF
 	)
+
+
 	FOR /F "tokens=*" %%A IN ('DIR /A:-D /B') DO (
 		IF NOT %%A==%~nx0 (
-			SET Use=%%~xA
-			SET Name=%%~nA
-			SET NewName=!RANDOM!-!Name!!Use!
-			RENAME "%%A" "!NewName!"
+			
+				SET Use=%%~xA
+				SET Name=%%~nA
+				
+				SET NewName=!RANDOM!-!Name!!Use!
+				
+				RENAME "%%A" "!NewName!"
 			
 		)
 	)
